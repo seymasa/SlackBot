@@ -36,30 +36,6 @@ def gpt_api_request(msg):
     resp = requests.get(f'http://localhost:3002/message/{msg}')
     return resp.json()['message']
 
-'''
-@slack_event_adapter.on('message')
-def message(payload):
-    """
-    :param payload: It contains information about the triggered event.
-    :return:
-    {
-       ...
-    }
-    """
-    global last_message_ts
-    event = payload.get('event', {})
-    channel_id = event.get('channel')
-    user_id = event.get('user')
-    text = event.get('text')
-    message_ts = event.get('ts')
-
-    if user_id != BOT_ID and (last_message_ts is None or message_ts > last_message_ts):
-        response = gpt_api_request(text)
-        response = response + f' -*- {text}'
-        #send_message(channel_id, response)
-        print(response)
-        last_message_ts = message_ts'''
-
 
 def converter(txt):
     return int(txt.replace('.', ''))
